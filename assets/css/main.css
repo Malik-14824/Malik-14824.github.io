@@ -122,6 +122,141 @@
 .project-card a:hover span.material-symbols-outlined {
     transform: translate(2px, -2px) scale(1.15);
 }
+
+/* ── Services Marquee ─────────────────────────────────────── */
+.services-marquee {
+    position: relative;
+    overflow: hidden;
+    padding: 0.75rem 0;
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.services-marquee::before,
+.services-marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.services-marquee::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(2, 6, 23, 0.92), transparent);
+}
+
+.services-marquee::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(2, 6, 23, 0.92), transparent);
+}
+
+.services-track {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+    width: max-content;
+    animation: services-marquee 28s linear infinite;
+    will-change: transform;
+}
+
+.services-marquee:hover .services-track {
+    animation-play-state: paused;
+}
+
+.service-card {
+    position: relative;
+    flex: 0 0 clamp(13.75rem, 19.5vw, 16.75rem);
+    min-height: 100%;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+    text-align: center;
+    transform-origin: center;
+    transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 380ms cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 280ms ease,
+                background-color 280ms ease,
+                opacity 280ms ease;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at top left, rgba(6, 204, 249, 0.18), transparent 52%);
+    opacity: 0;
+    transition: opacity 320ms ease;
+    pointer-events: none;
+}
+
+.service-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(6, 204, 249, 0.55) !important;
+    box-shadow: 0 18px 36px rgba(6, 204, 249, 0.14),
+                0 10px 22px rgba(2, 12, 16, 0.34);
+    z-index: 3;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.services-track:hover .service-card:not(:hover) {
+    transform: scale(0.98);
+    opacity: 0.72;
+}
+
+.service-card .material-symbols-outlined {
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), color 240ms ease;
+}
+
+.service-card:hover .material-symbols-outlined {
+    transform: scale(1.08) rotate(-3deg);
+    color: #67e8f9;
+}
+
+@keyframes services-marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-50% - 0.75rem));
+    }
+}
+
+@media (max-width: 767px) {
+    .services-marquee {
+        margin: 0 -0.25rem;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .services-marquee::before,
+    .services-marquee::after {
+        display: none;
+    }
+
+    .services-track {
+        gap: 1rem;
+        animation-duration: 22s;
+    }
+
+    .service-card {
+        flex-basis: min(76vw, 15.5rem);
+    }
+
+    .service-card:hover {
+        transform: translateY(-6px) scale(1.02);
+    }
+
+    .services-track:hover .service-card:not(:hover) {
+        transform: none;
+        opacity: 1;
+    }
+}
 /* ─────────────────────────────────────────────────────────── */
 .header-modern-divider {
     position: sticky;
@@ -326,6 +461,16 @@ html:not(.dark) #services .bg-slate-800\/50 {
 html:not(.dark) #services .bg-slate-800\/50:hover {
     border-color: rgba(6, 204, 249, 0.45) !important;
     box-shadow: 0 14px 28px rgba(6, 204, 249, 0.12);
+}
+html:not(.dark) .services-marquee::before {
+    background: linear-gradient(90deg, rgba(248, 251, 252, 0.96), transparent);
+}
+html:not(.dark) .services-marquee::after {
+    background: linear-gradient(270deg, rgba(248, 251, 252, 0.96), transparent);
+}
+html:not(.dark) .service-card:hover {
+    box-shadow: 0 24px 42px rgba(6, 204, 249, 0.14),
+                0 12px 24px rgba(15, 23, 42, 0.08);
 }
 html:not(.dark) #contact input,
 html:not(.dark) #contact textarea {
