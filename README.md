@@ -1,4 +1,4 @@
-# Zeeshan Malik Portfolio
+# Zia Ullah jan Portfolio
 
 A modern, responsive personal portfolio website for showcasing software engineering, web development, SEO, and digital marketing work.
 
@@ -138,7 +138,7 @@ If you want to reuse the structure, please customize content, branding, and asse
 
 ## Author
 
-**Zeeshan Malik**
+**Zia Ullah jan**
 
 - GitHub: [Zeeshan-Malik33](https://github.com/Zeeshan-Malik33)
 - LinkedIn: [zeeshan-malik27](https://www.linkedin.com/in/zeeshan-malik27/)
